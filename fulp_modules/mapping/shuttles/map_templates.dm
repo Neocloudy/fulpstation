@@ -64,3 +64,12 @@
 
 /obj/docking_port/stationary/laborcamp_home/helio
 	roundstart_template = /datum/map_template/shuttle/labour/helio
+
+/* Selene special prison shuttle
+shuttle: */
+/datum/map_template/shuttle/prison/selene
+	suffix = "selene"
+	name = "labour shuttle (Selenestation)"
+
+/obj/docking_port/stationary/prison_home/selene
+	roundstart_template = /datum/map_template/shuttle/prison/selene

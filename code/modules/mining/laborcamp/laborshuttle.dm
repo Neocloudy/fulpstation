@@ -37,3 +37,12 @@
 
 /obj/docking_port/stationary/laborcamp_home/kilo
 	roundstart_template = /datum/map_template/shuttle/labour/kilo
+
+// Prison Shuttles. For Selene mainly
+/obj/docking_port/stationary/prison_home/selene
+	name = "SeleneStation Prisoncamp Dock"
+	shuttle_id = "prison_home"
+	roundstart_template = /datum/map_template/shuttle/prison/selene
+	width = 9
+	dwidth = 2
+	height = 5

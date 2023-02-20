@@ -100,6 +100,10 @@
 	port_id = "labour"
 	who_can_purchase = null
 
+/datum/map_template/shuttle/prison // used for the shuttle to and from selene perma
+	port_id = "prison"
+	who_can_purchase = null
+
 /datum/map_template/shuttle/mining
 	port_id = "mining"
 	who_can_purchase = null
@@ -629,6 +633,11 @@
 	suffix = "advanced"
 	name = "advanced syndicate infiltrator"
 	description = "A much larger version of the standard Syndicate infiltrator that feels more like Kilostation. Has APCs, but power is not a concern for nuclear operatives. Also comes with atmos!"
+
+/datum/map_template/shuttle/prison/selene // used for selene perma shuttle
+	suffix = "selene"
+	name = "prison shuttle (Selenestation)"
+	who_can_purchase = null
 
 /datum/map_template/shuttle/cargo/delta
 	suffix = "delta"
