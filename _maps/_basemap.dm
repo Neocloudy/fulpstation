@@ -15,6 +15,7 @@
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\SeleneStation\SeleneStation.dmm"
 		#include "map_files\Heliostation\Heliostation.dmm"
+		#include "map_files/NTHCR-38/HeavyCruiser.dmm"
 
 		#ifdef CIBUILDING
 			#include "templates.dm"
