@@ -636,6 +636,7 @@
 
 /datum/map_template/shuttle/prison/selene // used for selene perma shuttle
 	suffix = "selene"
+	shuttle_id = "prison"
 	name = "prison shuttle (Selenestation)"
 	who_can_purchase = null
 
