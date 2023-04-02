@@ -20,7 +20,9 @@
 	req_admin_notify = 1
 	supervisors = "the Command staff"
 	spawn_type = /mob/living/carbon/human/species/synthetic
-	exp_granted_type = EXP_TYPE_SILICON
+	exp_requirements = 240
+	exp_required_type = EXP_TYPE_SILICON
+	exp_granted_type = EXP_TYPE_COMMAND
 	config_tag = "SUPPORT_SYNTHETIC"
 	outfit = /datum/outfit/job/synthetic/support
 	paycheck = PAYCHECK_COMMAND
