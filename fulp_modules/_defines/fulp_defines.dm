@@ -52,3 +52,6 @@
 
 ///Define for the 'Rabbits' Faction.
 #define FACTION_RABBITS "rabbits"
+
+
+#define issynthetic(A) (istype(A, /mob/living/carbon/human/species/synthetic))

@@ -44,3 +44,9 @@
 #define BEEF_TRAUMA_HALLUCINATIONS "Hallucinations"
 #define BEEF_TRAUMA_OCKY_ICKY "Ocky Icky"
 #define BEEF_TRAUMA_HYPNOTIC_STUPOR "Hypnotic Stupor"
+
+/**
+ * Synth species define
+ */
+#define SPECIES_SYNTHETIC "synthetic"
+#define LIMB_ID_SYNTHSKIN "synthskin"
