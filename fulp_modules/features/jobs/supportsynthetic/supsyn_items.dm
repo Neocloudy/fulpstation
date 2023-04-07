@@ -49,7 +49,7 @@
 
 /obj/item/radio/headset/heads/synthetic/support
 	name = "\proper support synth headset"
-	desc = "The headset of the robot that is bound to get its items looted by everyone."
+	desc = "The headset of the synthetic."
 	icon_state = "com_headset"
 	worn_icon_state = "com_headset"
 	keyslot = /obj/item/encryptionkey/heads/captain
@@ -70,7 +70,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	icon_state = "green"
-	greyscale_colors = "#4a9c57"
+	greyscale_colors = "#346d3d"
 
 /obj/item/storage/belt/utility/synth
 	name = "\improper synthetic toolbelt" // based off chief engineer belt
@@ -83,15 +83,14 @@
 /obj/item/storage/belt/utility/synth/PopulateContents()
 	SSwardrobe.provide_type(/obj/item/screwdriver/power, src)
 	SSwardrobe.provide_type(/obj/item/crowbar/power, src)
-	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src)//This can be changed if this is too much //It's been 5 years
+	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src)//This can be changed if this is too much
 	SSwardrobe.provide_type(/obj/item/multitool, src)
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
 	SSwardrobe.provide_type(/obj/item/analyzer, src)
-	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/synth/get_types_to_preload()
-	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
+	var/list/to_preload = list()
 	to_preload += /obj/item/screwdriver/power
 	to_preload += /obj/item/crowbar/power
 	to_preload += /obj/item/weldingtool/experimental

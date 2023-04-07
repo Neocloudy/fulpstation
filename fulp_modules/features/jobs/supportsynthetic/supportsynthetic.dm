@@ -49,9 +49,8 @@
 	id = /obj/item/card/id/advanced/gold
 	id_trim = /datum/id_trim/job/goldsynth
 	uniform = /obj/item/clothing/under/rank/synthetic/support
-	backpack_contents = list(
-		/obj/item/melee/baton/telescopic = 1,
-		)
+	l_pocket = /obj/item/modular_computer/pda/heads/synthetic
+	r_pocket = /obj/item/melee/baton/telescopic
 	belt = /obj/item/storage/belt/utility/synth
 	ears = /obj/item/radio/headset/heads/synthetic/support
 	shoes = /obj/item/clothing/shoes/jackboots
