@@ -1,7 +1,7 @@
 
 // *
 // Support Synthetic
-// A Command/Silicon hybrid role that is designed to fulfill every role with its access and traits.
+// A Command/Silicon hybrid role that is designed to fulfill any role with its abilities.
 // Notes and stuff:
 // * Synths do not have a job spawn point, they will always come in through the arrivals shuttle
 // *
@@ -49,14 +49,28 @@
 	id = /obj/item/card/id/advanced/gold
 	id_trim = /datum/id_trim/job/goldsynth
 	uniform = /obj/item/clothing/under/rank/synthetic/support
-	l_pocket = /obj/item/modular_computer/pda/heads/synthetic
-	r_pocket = /obj/item/melee/baton/telescopic
+	back = /obj/item/mod/control/pre_equipped/synth
+	backpack_contents = list(
+		/obj/item/melee/baton/telescopic = 1,
+		/obj/item/modular_computer/pda/heads/synthetic = 1,
+		)
 	belt = /obj/item/storage/belt/utility/synth
 	ears = /obj/item/radio/headset/heads/synthetic/support
 	shoes = /obj/item/clothing/shoes/jackboots
 
-	backpack = /obj/item/storage/backpack
-	satchel = /obj/item/storage/backpack/satchel
-	duffelbag = /obj/item/storage/backpack/duffelbag
+	backpack = null
+	satchel = null
+	duffelbag = null
 
 	box = /obj/item/storage/box/survival
+
+// Let's set everything on equip
+/datum/outfit/job/synthetic/support/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	H.set_species(/datum/species/synthetic)
+	H.max_stamina = 240
+	H.mob_surgery_speed_mod = 3
+	H.crit_threshold = -50
+	H.hardcrit_threshold = -75 // these can be changed if it's too lenient
+	H.maxHealth = 150
+	H.health = 150

@@ -37,16 +37,6 @@
 
 	return ..()
 
-/datum/id_trim/job/syntheticsupport
-	assignment = "Support Synthetic"
-	trim_state = "trim_janitor"
-	department_color = COLOR_CENTCOM_BLUE
-	subdepartment_color = COLOR_SERVICE_LIME
-	job = /datum/job/synthetic/support
-/datum/id_trim/job/syntheticsupport/New()
-	. = ..()
-	access = SSid_access.get_region_access_list(list(REGION_ALL_STATION))
-
 /obj/item/radio/headset/heads/synthetic/support
 	name = "\proper support synth headset"
 	desc = "The headset of the synthetic."
@@ -99,3 +89,4 @@
 	to_preload += /obj/item/extinguisher/mini
 	to_preload += /obj/item/analyzer
 	return to_preload
+

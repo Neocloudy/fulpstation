@@ -11,3 +11,6 @@
 
 ///Check if we are indeed a Beefman
 #define isbeefman(A) (is_species(A, /datum/species/beefman))
+
+///Check if the person is a synth
+#define issynthetic(A) (is_species(A, datum/species/synthetic))

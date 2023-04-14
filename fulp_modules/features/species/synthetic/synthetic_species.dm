@@ -1,6 +1,14 @@
 // Synthetic
 // An android but externally looks like a human and with many advantages
 
+// Synth Defines
+// Stats
+#define SUPSYNTH_STAMINA = 240
+#define SUPSYNTH_SPEEDMOD = 2
+#define SUPSYNTH_HEALTH = 150
+#define SUPSYN_CRIT = -50
+#define SUPSYN_HARDCRIT = -75
+
 /datum/species/synthetic
 	name = "Second Generation Android"
 	id = SPECIES_SYNTHETIC
@@ -26,9 +34,6 @@
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_NOBLOOD,
-		TRAIT_NOHARDCRIT,
-		TRAIT_NOSOFTCRIT,
-		TRAIT_NOCRITOVERLAY,
 		TRAIT_NOCRITDAMAGE,
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_MINDSHIELD,
@@ -49,6 +54,7 @@
 	mutantheart = null // Having normal organs makes no real difference in gameplay, also the actual synthetic mob is not generally spawned.
 	mutantliver = null
 	mutantlungs = null
+	speedmod = -0.3
 	species_language_holder = /datum/language_holder/synthetic
 	wing_types = list(/obj/item/organ/external/wings/functional/robotic)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
@@ -62,6 +68,17 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/synth,
 	)
 	examine_limb_id = SPECIES_HUMAN
+
+/datum/species/lizard/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_lizard_name(gender)
+
+	var/randname = lizard_name(gender)
+
+	if(lastname)
+		randname += " [lastname]"
+
+	return randname
 
 /**
  * PREFS STUFF
@@ -90,10 +107,12 @@
 			You're also immune to almost everything that would hurt a human- stuns, brute and burn still hurt.",
 		),
 		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "No Critical Condition",
-			SPECIES_PERK_DESC = "Synthetics don't enter critical condition and will continue to exist until death.",
+			SPECIES_PERK_NAME = "Lenient Critical Condition",
+			SPECIES_PERK_DESC = "Synthetics won't enter soft critical until -50, and hard critical until -75. You also \
+			won't take any suffocation damage while in crit, leaving you helpless if you enter hardcrit until you succumb or are repaired \
+			or killed.",
 		),
 	)
 
@@ -119,9 +138,6 @@
 	ADD_TRAIT(C, TRAIT_RESISTHIGHPRESSURE, ROUNDSTART_TRAIT)
 	ADD_TRAIT(C, TRAIT_TOXIMMUNE, ROUNDSTART_TRAIT)
 	ADD_TRAIT(C, TRAIT_NOBLOOD, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOHARDCRIT, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOSOFTCRIT, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOCRITOVERLAY, ROUNDSTART_TRAIT)
 	ADD_TRAIT(C, TRAIT_MINDSHIELD, ROUNDSTART_TRAIT)
 	ADD_TRAIT(C, TRAIT_NOGUNS, ROUNDSTART_TRAIT)
 	ADD_TRAIT(C, TRAIT_STRONG_GRABBER, ROUNDSTART_TRAIT)
@@ -131,7 +147,11 @@
 	ADD_TRAIT(C, TRAIT_XENO_IMMUNE, ROUNDSTART_TRAIT)
 	return ..()
 
-/mob/living/carbon/human/species/synthetic
+/mob/living/carbon/human/species/synthetic // The actual synth mob, spawned by the support synthetic job
 	race = /datum/species/synthetic
+	max_stamina = 240
+	mob_surgery_speed_mod = 3
+	crit_threshold = -50
+	hardcrit_threshold = -75 // these can be changed if it's too lenient
 	maxHealth = 150
 	health = 150
