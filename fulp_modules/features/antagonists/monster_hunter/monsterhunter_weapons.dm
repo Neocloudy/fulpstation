@@ -290,7 +290,7 @@
 	man.add_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)
 	if(!(man.has_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)))
 		return
-	addtimer(CALLBACK(man, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/silver_bullet), 20 SECONDS)
+	addtimer(CALLBACK(man, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/silver_bullet), 8 SECONDS)
 
 /obj/structure/rack/weaponsmith
 	name = "Weapon Forge"
@@ -354,6 +354,8 @@
 	if(!wonderland)
 		return
 	if(!(slot & ITEM_SLOT_MASK))
+		return
+	if(!IS_MONSTERHUNTER(user))
 		return
 	paradox.Grant(user)
 	wonderland.Grant(user)
@@ -436,9 +438,14 @@
 		return
 	if(!hunter.rabbits.len)
 		return
+	var/obj/effect/selected_bunny
 	for(var/obj/effect/located as anything in hunter.rabbits)
 		if(get_dist(user,located) < dist)
 			dist = get_dist(user,located)
+			selected_bunny = located
+	var/z_difference = abs(selected_bunny.z - user.z)
+	if(dist < 50 && z_difference != 0)
+		to_chat(user,span_warning("[z_difference] [z_difference == 1 ? "floor" : "floors"] [selected_bunny.z > user.z ? "above" : "below"]..."))
 	return dist
 
 /obj/item/rabbit_locator/Destroy()

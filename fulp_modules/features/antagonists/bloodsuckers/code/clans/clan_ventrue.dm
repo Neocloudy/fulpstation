@@ -1,7 +1,7 @@
 /datum/bloodsucker_clan/ventrue
 	name = CLAN_VENTRUE
 	description = "The Ventrue Clan is extremely snobby with their meals, and refuse to drink blood from people without a mind. \n\
-		There is additionally no way to rank themselves up, instead will have to rank their Favorite vassal through a Persuasion Rack. \n\
+		There is additionally no way to rank themselves up, instead will have to rank their Favorite Vassal through a Persuasion Rack. \n\
 		The Favorite Vassal will slowly turn into a Bloodsucker this way, until they finally lose their last bits of Humanity."
 	clan_objective = /datum/objective/bloodsucker/embrace
 	join_icon_state = "ventrue"
@@ -10,13 +10,13 @@
 	rank_up_type = BLOODSUCKER_RANK_UP_VASSAL
 	blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
 
-/datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/bloodsuckerdatum, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
+/datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
 	if(!target)
 		return ..()
 	var/datum/antagonist/vassal/favorite/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal/favorite)
 	// Purchase Power Prompt
 	var/list/options = list()
-	for(var/datum/action/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
 		if(initial(power.purchase_flags) & VASSAL_CAN_BUY && !(locate(power) in vassaldatum.powers))
 			options[initial(power.name)] = power
 
@@ -38,14 +38,13 @@
 			return
 
 		// Good to go - Buy Power!
-		var/datum/action/bloodsucker/purchased_power = options[choice]
+		var/datum/action/cooldown/bloodsucker/purchased_power = options[choice]
 		vassaldatum.BuyPower(new purchased_power)
 		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "taught [choice]!")
 		to_chat(bloodsuckerdatum.owner.current, span_notice("You taught [target] how to use [choice]!"))
 		target.balloon_alert(target, "learned [choice]!")
 		to_chat(target, span_notice("Your master taught you how to use [choice]!"))
 
-	vassaldatum.LevelUpPowers()
 	vassaldatum.vassal_level++
 	switch(vassaldatum.vassal_level)
 		if(2)
@@ -76,7 +75,8 @@
 			vassaldatum.set_vassal_level(target)
 
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost)
+	vassaldatum.LevelUpPowers()
 
 /datum/bloodsucker_clan/ventrue/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
 	to_chat(bloodsucker, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a Candelabrum!"))
-	vassaldatum.BuyPower(new /datum/action/bloodsucker/distress)
+	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/distress)
