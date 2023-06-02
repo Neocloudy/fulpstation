@@ -59,7 +59,7 @@
 	siemens_coefficient = 0
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
-	icon_state = "green"
+	icon_state = "white"
 	greyscale_colors = "#346d3d"
 
 /obj/item/storage/belt/utility/synth

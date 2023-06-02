@@ -1,20 +1,21 @@
 /datum/mod_theme/synthetic
 	name = "synthetic"
-	desc = "A highly complex suit manufactured by Nakamura Engineering and DeForest Medical Corp. Far too heavy for organics to wear."
-	extended_desc = "The Synthetic MODsuit was designed in a collaboration between Nakamura Engineering alongside DeForest Medical Corp \
-		for a simple task- durability and assistance for every situation that a Synthetic will come running into as part of its duties. \
+	desc = "A complex suit designed by NanoTrasen for Synthetics, it has utilities and protection for any situation."
+	extended_desc = "Part of NanoTrasen's 2-year project to create the Synthetic and begin its service was fitting them with important utilities and protection \
+		for their service. The Synthetic MODsuit is a complex unit designed for utility and protection for active Synthetics. \
+		The suit has features and protection for every situation that a Synthetic will come running into as part of its duties. \
 		The plating has an easy to notice cyan and blue color scheme with shock, fire and acid-proof lining, fitted with protective materials \
-		to allow for high protection and an actuator for no slowdown. \
-		Make the corporation proud!"
+		to allow for high protection and an actuator for minimum slowdown. \
+		Make the corporation proud, they put a lot of effort into you!"
 	default_skin = "debug"
 	armor_type = /datum/armor/mod_theme_synth
 	resistance_flags = FIRE_PROOF|ACID_PROOF
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	complexity_max = 32
+	complexity_max = DEFAULT_MAX_COMPLEXITY + 12
 	siemens_coefficient = 0
-	slowdown_inactive = 2
-	slowdown_active = 0
+	slowdown_inactive = 1
+	slowdown_active = 0.25
 	allowed_suit_storage = list(
 		/obj/item/gun,
 	)
@@ -74,7 +75,6 @@
 		/obj/item/mod/module/magboot,
 		/obj/item/mod/module/visor/medhud,
 		/obj/item/mod/module/visor/meson,
-		/obj/item/mod/module/hat_stabilizer,
 		/obj/item/mod/module/health_analyzer,
 		/obj/item/mod/module/criminalcapture/patienttransport,
 		/obj/item/mod/module/defibrillator,
@@ -84,4 +84,9 @@
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack/advanced,
+		/obj/item/mod/module/defibrillator,
+		/obj/item/mod/module/surgical_processor,
+		/obj/item/mod/module/visor/medhud,
+		/obj/item/mod/module/visor/meson,
+		/obj/item/mod/module/flashlight,
 	)

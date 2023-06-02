@@ -53,6 +53,7 @@
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
 		/obj/item/modular_computer/pda/heads/synthetic = 1,
+		/obj/item/storage/medkit/surgery = 1,
 		)
 	belt = /obj/item/storage/belt/utility/synth
 	ears = /obj/item/radio/headset/heads/synthetic/support

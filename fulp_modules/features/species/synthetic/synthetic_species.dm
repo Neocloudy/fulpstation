@@ -39,10 +39,7 @@
 		TRAIT_MINDSHIELD,
 		TRAIT_QUICKER_CARRY,
 		TRAIT_NOGUNS,
-		TRAIT_MEDICAL_HUD,
-		TRAIT_DIAGNOSTIC_HUD,
 		TRAIT_SECURITY_HUD,
-		TRAIT_SIGN_LANG,
 		TRAIT_SHOCKIMMUNE,
 		TRAIT_XENO_IMMUNE,
 	)
@@ -85,13 +82,17 @@
  */
 
 /datum/species/synthetic/get_species_description()
-	return "Externally indistinguishable from human beings, these synthetics \
+	return "These are the result of a 2-year project to create a more powerful android, dubbed Synthetics. These Synthetics \
 		fulfill support roles aboard NT stations."
 
 /datum/species/synthetic/get_species_lore()
 	return list(
-		"Based off Nanotrasen Androids, these second generation units are externally indistinguishable while undamaged from a human and are more resilient. \
-		Such units are employed for support jobs around stations due to their resistance to the elements and damage.",
+		"Based off Nanotrasen Androids while being more powerful and resilient, \
+		these units are pale, human-looking androids - named Synthetics - commonly seen serving onboard NanoTrasen stations. \
+		Their most common use is typically on stations performing medical service thanks to their incredible medical knowledge, \
+		aswell as exploring space around NanoTrasen stations, \
+		but also have seen slightly less frequent use in damage control or engineering operations, security and many other uses thanks to their resistance to \
+		elements, damage and inhuman skills in all fields.",
 	)
 
 /datum/species/synthetic/create_pref_unique_perks()
@@ -118,36 +119,7 @@
 
 	return to_add
 
-/// Adds traits for the Support Synthetic spawn. These can't be removed normally, but that's not required when it's mostly impossible
-/// to change the species of a synth.
-/datum/species/synthetic/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	. = ..()
-	ADD_TRAIT(C, TRAIT_ADVANCEDTOOLUSER, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_GENELESS, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_LIMBATTACHMENT, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOBREATH, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOCLONELOSS, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOHUNGER, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOMETABOLISM, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_PIERCEIMMUNE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_IGNOREDAMAGESLOWDOWN, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_RADIMMUNE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_RESISTCOLD, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_RESISTHEAT, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_RESISTLOWPRESSURE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_RESISTHIGHPRESSURE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_TOXIMMUNE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOBLOOD, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_MINDSHIELD, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_NOGUNS, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_STRONG_GRABBER, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_QUICK_BUILD, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_QUICKER_CARRY, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_SHOCKIMMUNE, ROUNDSTART_TRAIT)
-	ADD_TRAIT(C, TRAIT_XENO_IMMUNE, ROUNDSTART_TRAIT)
-	return ..()
-
-/mob/living/carbon/human/species/synthetic // The actual synth mob, spawned by the support synthetic job
+/mob/living/carbon/human/species/synthetic // Spawned by the Support Synthetic job.
 	race = /datum/species/synthetic
 	max_stamina = 240
 	mob_surgery_speed_mod = 3
