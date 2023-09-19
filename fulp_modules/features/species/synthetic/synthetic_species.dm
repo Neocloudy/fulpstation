@@ -10,11 +10,12 @@
 #define SUPSYN_HARDCRIT = -75
 
 /datum/species/synthetic
-	name = "Second Generation Android"
+	name = "Synthetic"
 	id = SPECIES_SYNTHETIC
 	species_traits = list(
 		NO_DNA_COPY,
 		NOTRANSSTING,
+		NOZOMBIE,
 		NO_UNDERWEAR,
 	)
 	inherent_traits = list(
@@ -35,10 +36,12 @@
 		TRAIT_TOXIMMUNE,
 		TRAIT_NOBLOOD,
 		TRAIT_NOCRITDAMAGE,
+		TRAIT_NOGUNS,
+		TRAIT_NOFLASH,
+		TRAIT_NOHARDCRIT,
 		TRAIT_ADVANCEDTOOLUSER,
 		TRAIT_MINDSHIELD,
 		TRAIT_QUICKER_CARRY,
-		TRAIT_NOGUNS,
 		TRAIT_SECURITY_HUD,
 		TRAIT_SHOCKIMMUNE,
 		TRAIT_XENO_IMMUNE,
@@ -51,7 +54,6 @@
 	mutantheart = null // Having normal organs makes no real difference in gameplay, also the actual synthetic mob is not generally spawned.
 	mutantliver = null
 	mutantlungs = null
-	speedmod = -0.3
 	species_language_holder = /datum/language_holder/synthetic
 	wing_types = list(/obj/item/organ/external/wings/functional/robotic)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
@@ -66,17 +68,19 @@
 	)
 	examine_limb_id = SPECIES_HUMAN
 
-/datum/species/lizard/random_name(gender,unique,lastname)
-	if(unique)
-		return random_unique_lizard_name(gender)
 
-	var/randname = lizard_name(gender)
+/*
+/datum/species/synthetic/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_synth_name(gender)
+
+	var/randname = synth_name(gender)
 
 	if(lastname)
 		randname += " [lastname]"
 
 	return randname
-
+*/
 /**
  * PREFS STUFF
  */
@@ -112,8 +116,7 @@
 			SPECIES_PERK_ICON = "bolt",
 			SPECIES_PERK_NAME = "Lenient Critical Condition",
 			SPECIES_PERK_DESC = "Synthetics won't enter soft critical until -50, and hard critical until -75. You also \
-			won't take any suffocation damage while in crit, leaving you helpless if you enter hardcrit until you succumb or are repaired \
-			or killed.",
+			won't take any suffocation damage while in crit.",
 		),
 	)
 
@@ -121,9 +124,47 @@
 
 /mob/living/carbon/human/species/synthetic // Spawned by the Support Synthetic job.
 	race = /datum/species/synthetic
-	max_stamina = 240
+	max_stamina = 180
 	mob_surgery_speed_mod = 3
-	crit_threshold = -50
-	hardcrit_threshold = -75 // these can be changed if it's too lenient
+	crit_threshold = -30
+	hardcrit_threshold = -75 // leaving this here for now
 	maxHealth = 150
 	health = 150
+
+/datum/species/synthetic/modern // A modern synthetic that sacrifices some luxuries to aid them in SPEED and other stuff. Used by the Medical and Deputy synthetics.
+	name = "Modern Synthetic"
+	id = SPECIES_SYNTHETIC_MODERN
+	inherent_traits = list(
+		TRAIT_LIMBATTACHMENT,
+		TRAIT_NOBREATH,
+		TRAIT_NOCLONELOSS,
+		TRAIT_NOHUNGER,
+		TRAIT_NOMETABOLISM,
+		TRAIT_PIERCEIMMUNE,
+		TRAIT_IGNOREDAMAGESLOWDOWN,
+		TRAIT_RADIMMUNE,
+		TRAIT_RESISTCOLD,
+		TRAIT_RESISTHEAT,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_RESISTHIGHPRESSURE,
+		TRAIT_TOXIMMUNE,
+		TRAIT_NOBLOOD,
+		TRAIT_NOCRITDAMAGE,
+		TRAIT_NOGUNS,
+		TRAIT_NOHARDCRIT,
+		TRAIT_ADVANCEDTOOLUSER,
+		TRAIT_MINDSHIELD,
+		TRAIT_QUICKER_CARRY,
+		TRAIT_MEDICAL_HUD,
+		TRAIT_XENO_IMMUNE,
+	)
+
+	speedmod = -0.2 // faster than humans at the cost of health
+
+/mob/living/carbon/human/species/synthetic/modern // Spawned by the Support Synthetic job.
+	race = /datum/species/synthetic/modern
+	mob_surgery_speed_mod = 500
+	crit_threshold = -30
+	hardcrit_threshold = -75 // leaving this here for now
+	maxHealth = 125
+	health = 125 // modern synthetics sacrifice health for speed and skills

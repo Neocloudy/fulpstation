@@ -6,11 +6,11 @@
 // * Synths do not have a job spawn point, they will always come in through the arrivals shuttle
 // *
 
-#define JOB_SUPPORT_SYNTHETIC "Synthetic"
-#define JOB_DISPLAY_ORDER_SUPPORTSYNTH 36
+#define JOB_SYNTHETIC_SERVICE "Attendant Synthetic"
+#define JOB_DISPLAY_ORDER_SERVICESYNTH 36
 
-/datum/job/synthetic/support
-	title = JOB_SUPPORT_SYNTHETIC
+/datum/job/synthetic/service
+	title = JOB_SYNTHETIC_SERVICE
 	description = "Use your abilities such as resilience to help \
 		with jobs around the station."
 	department_head = list(JOB_RESEARCH_DIRECTOR)
@@ -27,10 +27,10 @@
 	outfit = /datum/outfit/job/synthetic/support
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SCI
-	display_order = JOB_DISPLAY_ORDER_SUPPORTSYNTH
-	bounty_types = CIV_JOB_SCI
+	display_order = JOB_DISPLAY_ORDER_SERVICESYNTH
+	bounty_types = CIV_JOB_MED
 	departments_list = list(
-		/datum/job_department/silicon,
+		/datum/job_department/service,
 		)
 	family_heirlooms = list(/obj/item/storage/medkit/ancient/heirloom)
 	mail_goodies = list(
@@ -43,13 +43,13 @@
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_CAN_BE_INTERN
 
 /datum/outfit/job/synthetic/support
-	name = "Support Synthetic"
-	jobtype = /datum/job/synthetic/support
+	name = "Attendant Synthetic"
+	jobtype = /datum/job/synthetic/service
 
 	id = /obj/item/card/id/advanced/gold
-	id_trim = /datum/id_trim/job/goldsynth
+	id_trim = /datum/id_trim/job/synthetic/medical
 	uniform = /obj/item/clothing/under/rank/synthetic/support
-	back = /obj/item/mod/control/pre_equipped/synth
+	back = /obj/item/storage/backpack
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic = 1,
 		/obj/item/modular_computer/pda/heads/synthetic = 1,

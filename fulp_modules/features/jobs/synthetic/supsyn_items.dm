@@ -1,4 +1,38 @@
 
+/datum/id_trim/job/synthetic/medical
+	assignment = "Medical Synthetic"
+	intern_alt_name = "Intern Medical Synthetic"
+	trim_state = "trim_medicaldoctor"
+	department_color = COLOR_MEDICAL_BLUE
+	subdepartment_color = COLOR_MEDICAL_BLUE
+	department_state = "departmenthead"
+	sechud_icon_state = SECHUD_MEDICAL_DOCTOR
+	template_access = list(
+		ACCESS_BRIG_ENTRANCE,
+		ACCESS_COMMAND,
+		ACCESS_PLUMBING,
+		ACCESS_EVA,
+		ACCESS_MAINT_TUNNELS,
+		ACCESS_MECH_MEDICAL,
+		ACCESS_MEDICAL,
+		ACCESS_MINERAL_STOREROOM,
+		ACCESS_MORGUE,
+		ACCESS_PHARMACY,
+		ACCESS_PSYCHOLOGY,
+		ACCESS_SURGERY,
+		ACCESS_VIROLOGY,
+		)
+	job = /datum/job/synthetic/medical
+
+/// Synthetics have all access
+/datum/id_trim/job/synthetic/medical/New()
+	extra_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_COMMON) + SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND))
+	extra_wildcard_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_PRV_COMMAND) + SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN))
+	minimal_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_COMMON) + SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND))
+	minimal_wildcard_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_PRV_COMMAND) + SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN))
+
+	return ..()
+
 // Items and defines for the Synthetic job.
 
 /obj/item/modular_computer/pda/heads/synthetic
@@ -14,28 +48,8 @@
 	assigned_icon_state = "assigned_centcom"
 	wildcard_slots = WILDCARD_LIMIT_SILVER
 
-/datum/id_trim/job/goldsynth
-	assignment = "Synthetic"
-	intern_alt_name = "Intern Synthetic"
-	trim_state = "trim_janitor"
-	department_color = COLOR_COMMAND_BLUE
-	subdepartment_color = COLOR_COMMAND_BLUE
-	department_state = "departmenthead"
-	sechud_icon_state = SECHUD_CAPTAIN
-	template_access = list(
-		ACCESS_CAPTAIN,
-		ACCESS_CHANGE_IDS,
-		)
-	job = /datum/job/synthetic/support
 
-/// Synthetics have all access
-/datum/id_trim/job/goldsynth/New()
-	extra_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_COMMON) + SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND))
-	extra_wildcard_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_PRV_COMMAND) + SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN))
-	minimal_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_COMMON) + SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND))
-	minimal_wildcard_access |= (SSid_access.get_flag_access_list(ACCESS_FLAG_PRV_COMMAND) + SSid_access.get_flag_access_list(ACCESS_FLAG_CAPTAIN))
 
-	return ..()
 
 /obj/item/radio/headset/heads/synthetic/support
 	name = "\proper support synth headset"
@@ -43,6 +57,13 @@
 	icon_state = "com_headset"
 	worn_icon_state = "com_headset"
 	keyslot = /obj/item/encryptionkey/heads/captain
+
+/obj/item/radio/headset/heads/synthetic/medical
+	name = "\proper medical synth headset"
+	desc = "The headset of the medical department's synthetic."
+	icon_state = "com_headset"
+	worn_icon_state = "com_headset"
+	keyslot = /obj/item/encryptionkey/headset_med
 
 /obj/item/clothing/under/rank/synthetic/support
 	icon = 'icons/obj/clothing/under/centcom.dmi'

@@ -50,3 +50,8 @@
  */
 #define SPECIES_SYNTHETIC "synthetic"
 #define LIMB_ID_SYNTHSKIN "synthskin"
+
+// synthetic variants define
+#define SPECIES_SYNTHETIC_MODERN "modern_synthetic"
+#define SPECIES_SYNTHETIC_EARLY "early_synthetic"
+#define SPECIES_SYNTHETIC_COMBAT "combat_synthetic"
